@@ -1,0 +1,49 @@
+# Sample log file with numerous URLs for testing extract_urls.py
+
+2025-06-05 08:15:22 INFO User accessed application at https://app.example.com/dashboard
+2025-06-05 08:16:10 DEBUG Fetching resource from http://api.example.com/v1/products?id=987&details=true
+2025-06-05 08:16:11 DEBUG Resource fetched successfully: https://cdn.example.com/assets/img/logo.png
+2025-06-05 08:16:12 ERROR Unable to connect to http://auth.example.com/login?redirect=/dashboard
+2025-06-05 08:17:05 INFO Redirecting user to https://secure.example.com/login?next=%2Fprofile
+2025-06-05 08:18:33 WARN 404 at http://static.example.com/js/app.bundle.js (file not found)
+2025-06-05 08:19:47 INFO External API call: https://api.thirdparty.net/data?token=abc123
+2025-06-05 08:20:30 DEBUG Checking updates from http://updates.example.com/check?version=2.0.1
+2025-06-05 08:21:02 INFO Downloaded patch from https://downloads.example.com/patch/v2.0.1/patch.zip
+2025-06-05 08:22:18 DEBUG Uploading logs to http://logs.example.com/upload
+2025-06-05 08:23:50 INFO User clicked link: https://blog.example.com/2025/06/05/new-features.html
+2025-06-05 08:24:11 ERROR Image not found at http://images.example.com/products/12345_small.jpg
+2025-06-05 08:25:28 INFO Health check URL: https://health.example.com/status
+2025-06-05 08:26:09 DEBUG Internal service ping: http://internal.example.local:8080/ping
+2025-06-05 08:27:15 INFO Fetching user avatar from https://assets.example.com/avatars/user123.png
+2025-06-05 08:28:47 WARN Timeout contacting http://slow.example.com/endpoint
+2025-06-05 08:29:55 INFO API documentation available at https://docs.example.com/api/v1
+2025-06-05 08:30:21 DEBUG Triggering webhook at http://webhooks.example.com/notify?event=login
+2025-06-05 08:31:46 INFO Media stream URL: http://media.example.com/live/stream.m3u8
+2025-06-05 08:32:58 WARN Deprecated URL used: https://old-api.example.com/v0/resource
+2025-06-05 08:33:20 INFO Session token validation via https://auth2.example.com/validate?token=XYZ789
+2025-06-05 08:34:34 DEBUG Cache invalidation request sent to http://cache.example.com/invalidate?key=user123
+2025-06-05 08:35:11 INFO Reporting metrics to https://metrics.example.com/report
+2025-06-05 08:36:27 DEBUG Playing advertisement from http://ads.example.net/instream/42.mp4
+
+# Example Apache access log entries (with referrer URLs)
+192.0.2.10 - - [05/Jun/2025:09:00:00 +0000] "GET /index.html HTTP/1.1" 200 512 "http://example.com/" "Mozilla/5.0"
+198.51.100.22 - - [05/Jun/2025:09:01:15 +0000] "GET /about.html HTTP/1.1" 200 1024 "https://referrer.example.com/path?arg=val" "Mozilla/5.0"
+203.0.113.5 - - [05/Jun/2025:09:02:30 +0000] "GET /contact.html HTTP/1.1" 404 256 "http://example.com/previous-page" "Mozilla/5.0"
+
+# Firewall log entries
+Jun  5 09:05:00 firewall1 kernel: ALLOW IN=eth0 OUT= MAC=00:0c:29:12:34:56 SRC=192.168.1.100 DST=203.0.113.10 LEN=60 TOS=0x00 PREC=0x00 TTL=64 ID=54321 DF PROTO=TCP SPT=51432 DPT=80 WINDOW=65535 RES=0x00 SYN URGP=0
+Jun  5 09:05:01 firewall1 kernel: CONNECTION to https://internal.example.local:8443 permitted for user Alice
+Jun  5 09:05:05 firewall1 kernel: BLOCK IN=eth0 OUT= MAC=00:0c:29:12:34:57 SRC=10.0.0.5 DST=198.51.100.45 LEN=60 TOS=0x00 PREC=0x00 TTL=128 ID=12345 DF PROTO=TCP SPT=12345 DPT=443 WINDOW=29200 RES=0x00 SYN URGP=0
+
+# DNS log entries
+2025-06-05T09:10:00Z named[1234]: client 192.168.1.101#52604 (example.com): query: example.com IN A + (192.168.1.1)
+2025-06-05T09:10:05Z named[1234]: client 192.168.1.102#52605 (api.example.net): query: api.example.net IN AAAA + (192.168.1.1)
+2025-06-05T09:10:10Z named[1234]: UPDATE 127.0.0.1: update domain https://dynamic.example.com/lease
+
+# Application error log with embedded URLs
+[2025-06-05 09:15:00] ERROR Unable to download https://updates.example.com/fixes/urgent-fix.patch
+[2025-06-05 09:15:30] INFO Fallback URL: http://mirror.example.org/patches/urgent-fix.patch
+[2025-06-05 09:16:00] INFO User-reported bug: https://support.example.com/ticket/BUG-1234
+[2025-06-05 09:16:45] DEBUG Sending telemetry to https://telemetry.example.com/submit
+
+# End of sample log file
